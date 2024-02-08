@@ -1,0 +1,5 @@
+[Unit]
+Description=Volume for devpi persistent data
+
+[Volume]
+VolumeName=devpi

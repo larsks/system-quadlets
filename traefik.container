@@ -1,0 +1,20 @@
+[Unit]
+Description=Traefik front-end load balancer
+After=network-online.target local-fs.target
+Requires=services.network
+After=services.network
+
+[Container]
+Image=docker.io/traefik:latest
+Pull=missing
+Network=services.network
+Volume=/run/podman/podman.sock:/var/run/docker.sock:z
+Exec=--api.insecure=true --providers.docker --providers.docker.exposedbydefault=false
+PublishPort=172.31.255.1:80:80
+PublishPort=172.31.255.1:443:443
+PublishPort=172.31.255.1:8100:8080
+SecurityLabelDisable=true
+
+[Install]
+WantedBy=default.target
+

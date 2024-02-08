@@ -1,0 +1,16 @@
+[Unit]
+Description=whoami container
+After=network-online.target local-fs.target
+
+[Container]
+Image=docker.io/traefik/whoami
+Pull=missing
+Network=services.network
+Label=traefik.enable=true
+Label=traefik.http.routers.whoami.rule=Host(`whoami.internal`)
+Label=traefik.http.routers.whoami.entrypoints=http
+Label=traefik.http.services.whoami.loadbalancer.server.port=80
+
+[Install]
+WantedBy=default.target
+

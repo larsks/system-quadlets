@@ -1,0 +1,19 @@
+[Unit]
+Description=devpi
+After=network-online.target local-fs.target
+Requires=devpi.volume devpi.image services.network
+After=devpi.volume services.network
+
+[Container]
+Image=ghcr.io/larsks/devpi:latest
+Pull=missing
+Volume=devpi.volume:/data
+Network=services.network
+Label=traefik.enable=true
+Label=traefik.http.routers.devpi.rule=Host(`devpi.internal`)
+Label=traefik.http.routers.devpi.entrypoints=http
+Label=traefik.http.services.devpi.loadbalancer.server.port=3141
+
+[Install]
+WantedBy=default.target
+
