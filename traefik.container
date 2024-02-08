@@ -1,8 +1,6 @@
 [Unit]
 Description=Traefik front-end load balancer
 After=network-online.target local-fs.target
-Requires=services.network
-After=services.network
 
 [Container]
 Image=docker.io/traefik:latest

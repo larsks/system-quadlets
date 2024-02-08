@@ -1,8 +1,6 @@
 [Unit]
 Description=devpi
 After=network-online.target local-fs.target
-Requires=devpi.volume devpi.image services.network
-After=devpi.volume services.network
 
 [Container]
 Image=ghcr.io/larsks/devpi:latest
