@@ -1,0 +1,9 @@
+[Unit]
+Description=Dnsmasq %i
+
+[Service]
+Type=exec
+ExecStart=/usr/sbin/dnsmasq -k -C /etc/dnsmasq/%i.conf
+
+[Install]
+WantedBy=default.target
